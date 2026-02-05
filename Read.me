@@ -1,0 +1,222 @@
+# 🚀 3-Tier Full Stack Chat Application on Kubernetes
+
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Minukube-blue)
+![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
+![Node.js](https://img.shields.io/badge/Node.js-Backend-green)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-green)
+![Status](https://img.shields.io/badge/Project-Active-success)
+
+A production-style **3-tier full stack application** deployed on **Kubernetes (Minikube)**.
+This project demonstrates containerization, orchestration, and service communication inside a Kubernetes cluster.
+
+---
+
+## 📌 Project Overview
+
+This project implements a **3-tier architecture**:
+
+```
+User → Frontend → Backend API → MongoDB
+```
+
+Each component runs inside Kubernetes as separate pods and services.
+
+### Architecture Layers
+
+* **Frontend Layer** — User interface service
+* **Backend Layer** — Node.js API handling business logic
+* **Database Layer** — MongoDB with persistent storage
+
+The goal of this project is to simulate a real-world DevOps deployment workflow.
+
+---
+
+## 🏗️ Architecture Diagram
+
+```
+                ┌───────────────┐
+                │   Frontend    │
+                │  (NodePort)   │
+                └───────┬───────┘
+                        │
+                        ▼
+                ┌───────────────┐
+                │    Backend    │
+                │   (ClusterIP) │
+                └───────┬───────┘
+                        │
+                        ▼
+                ┌───────────────┐
+                │    MongoDB    │
+                │ Persistent DB │
+                └───────────────┘
+```
+
+---
+
+## 🛠️ Technologies Used
+
+* **Docker** — Containerization
+* **Kubernetes (Minikube)** — Orchestration
+* **Node.js** — Backend API
+* **MongoDB** — Database
+* **YAML** — Kubernetes manifests
+* **VMware** — Local VM environment
+
+---
+
+## 📂 Project Structure
+
+```
+3-tier-application/
+│
+├── frontend/
+├── backend/
+├── k8s/
+│   ├── namespace.yml
+│   ├── frontend-deployment.yml
+│   ├── backend-deployment.yml
+│   ├── mongodb-deployment.yml
+│   ├── services.yml
+│   ├── mongodb-pvc.yml
+│   └── secrets.yml
+│
+├── docker-compose.yml
+└── README.md
+```
+
+---
+
+## ⚙️ Deployment Workflow
+
+### Step 1 — Clone Repository
+
+```
+git clone https://github.com/muhammadbilal-7861/3-tier-application-
+cd 3-tier-application-
+```
+
+### Step 2 — Start Kubernetes Cluster
+
+```
+minikube start
+```
+
+### Step 3 — Create Namespace
+
+```
+kubectl apply -f k8s/namespace.yml
+```
+
+### Step 4 — Deploy Application
+
+```
+kubectl apply -f k8s/
+```
+
+### Step 5 — Verify Deployment
+
+```
+kubectl get all -n chat-app
+```
+
+### Step 6 — Access Frontend
+
+```
+kubectl port-forward service/frontend-service -n chat-app 80:80
+```
+
+Open browser:
+
+```
+http://localhost
+```
+
+---
+
+## 🔍 Kubernetes Concepts Demonstrated
+
+This project demonstrates practical use of:
+
+* Kubernetes Deployments
+* Services (NodePort & ClusterIP)
+* Namespaces
+* Persistent Volume Claims
+* Secrets
+* Pod networking
+* Port forwarding
+* Container orchestration
+
+---
+
+## 📊 Features
+
+* Scalable 3-tier architecture
+* Persistent MongoDB storage
+* Internal Kubernetes networking
+* Isolated namespace deployment
+* Docker containerization
+* Local Kubernetes cluster setup
+
+---
+
+## 🧪 Troubleshooting
+
+### Pods not starting
+
+```
+kubectl describe pod <pod-name> -n chat-app
+```
+
+### View logs
+
+```
+kubectl logs <pod-name> -n chat-app
+```
+
+### Restart deployment
+
+```
+kubectl rollout restart deployment <deployment-name> -n chat-app
+```
+
+---
+
+## 🚀 Future Improvements
+
+* CI/CD pipeline integration (GitHub Actions / Jenkins)
+* Helm chart packaging
+* Ingress controller setup
+* Monitoring with Prometheus & Grafana
+* Cloud deployment (AWS / GCP / Azure)
+* Horizontal Pod Autoscaling
+
+---
+
+## 🎯 Learning Outcomes
+
+Through this project I learned:
+
+* Kubernetes resource management
+* Service communication inside clusters
+* Persistent storage handling
+* Containerized application deployment
+* Debugging Kubernetes workloads
+
+---
+
+## 🤝 Contributing
+
+Pull requests and suggestions are welcome.
+
+---
+
+## 👨‍💻 Author
+
+**Muhammad Bilal**
+
+GitHub: [https://github.com/muhammadbilal-7861](https://github.com/muhammadbilal-7861)
+
+---
+
+⭐ If you found this project helpful, please consider giving it a star!
